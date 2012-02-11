@@ -17,6 +17,20 @@ function give_checkout {
   cd "$give_dir/src" && git archive --prefix "$1/" --remote node "$1" | tar -xf -
 }
 
+function give_install {
+  give_init
+  if [ -d "$give_dir/src/$1" ]; then
+    echo "Version $1 is already installed. Run \`give rm $1\` to remove it."
+    return 1
+  fi
+  give_checkout $1
+
+  cd "$give_dir/src/$1" && \
+  ./configure --prefix="$give_dir/installed/$1" && \
+  make &&
+  make install
+}
+
 function give_help {
   echo
   echo "give - git-based node.js version manager"
@@ -34,5 +48,8 @@ fi
 case $1 in
   "help")
     give_help
+  ;;
+  "install")
+    give_install $2
   ;;
 esac
