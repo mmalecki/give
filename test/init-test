@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. test/helpers
+
+describe "give/init"
+
+export give_dir="/tmp/give-$RANDOM"
+
+./give.sh init
+
+[ -d "$give_dir/src/node/.git" ]
+spec "give should clone node.js repository to it's home directory"
+
+rm -rf "$give_dir"
