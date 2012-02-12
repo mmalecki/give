@@ -72,6 +72,10 @@ function give_help {
   echo
   echo "  give ls                          List installed node.js versions"
   echo "  give rm <commit-ish>             Remove <commit-ish>"
+  echo "  give init                        Explicitely initialize repository"
+  echo "    Please note that \`give\` does it for you during operations which"
+  echo "    require repository setup"
+  echo
   echo "  give help                        You're staring at it"
   echo
 }
@@ -93,6 +97,9 @@ case $1 in
   ;;
   "use")
     give_use $2
+  ;;
+  "init")
+    give_init
   ;;
   "install")
     give_install $2
