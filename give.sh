@@ -21,10 +21,8 @@ function give_checkout {
 
 function give_install {
   give_init
-  if [ -d "$give_dir/src/$1" ]; then
-    echo "Version $1 is already installed. Run \`give rm $1\` to remove it."
-    return 1
-  fi
+  give_update
+
   give_checkout $1
 
   cd "$give_dir/src/$1" && \
