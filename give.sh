@@ -31,6 +31,11 @@ function give_install {
   make install
 }
 
+function give_rm {
+  give_ensure_installed $1
+  rm -rf $give_dir/{installed,src}/$1
+}
+
 function give_ensure_installed {
   if [ ! -d "$give_dir/installed/$1" ]; then
     echo "Version $1 is not installed. Run \`give install $1\` to install it."
@@ -60,6 +65,9 @@ fi
 case $1 in
   "help")
     give_help
+  ;;
+  "rm")
+    give_rm $2
   ;;
   "use")
     give_use $2
