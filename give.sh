@@ -36,6 +36,10 @@ function give_rm {
   rm -rf $give_dir/{installed,src}/$1
 }
 
+function give_ls {
+  ls "$give_dir/installed"
+}
+
 function give_ensure_installed {
   if [ ! -d "$give_dir/installed/$1" ]; then
     echo "Version $1 is not installed. Run \`give install $1\` to install it."
@@ -68,6 +72,9 @@ case $1 in
   ;;
   "rm")
     give_rm $2
+  ;;
+  "ls")
+    give_ls
   ;;
   "use")
     give_use $2
