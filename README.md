@@ -13,7 +13,7 @@ which is very fast on local repositories.
 
 ## Installation
 
-    npm install give
+    npm install -g give
 
 ## Usage
 
