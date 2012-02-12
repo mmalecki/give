@@ -2,6 +2,15 @@
 
 `give` ('git-versioned environment', name courtesy of [@AvianFlu](https://github.com/AvianFlu)) is a git-based node.js version manager.
 
+It allows you to install anything git can checkout:
+
+  * tags: `give install v0.6.10`
+  * commits: `give install 3f43b1c039727e12c7a27fb31010aa309a4a35d8`
+  * branches: `give install master`
+
+It's also very fast - instead of doing `git checkout` it uses `git archive`
+which is very fast on local repositories.
+
 ## Installation
 
     npm install give
