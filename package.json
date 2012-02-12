@@ -1,0 +1,16 @@
+{
+  "name": "give",
+  "version": "0.1.0",
+  "author": "Maciej Małecki <maciej.malecki@notimplemented.org>",
+  "description": "git-based node.js version manager",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mmalecki/give.git"
+  },
+  "bin": {
+    "give": "./give.sh"
+  },
+  "scripts": {
+    "test": "test/run"
+  }
+}
