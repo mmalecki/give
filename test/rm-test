@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. test/helpers
+
+describe "give/rm"
+
+export give_dir="/tmp/give-$RANDOM"
+
+mkdir -p $give_dir/{installed,src}/master
+touch $give_dir/{installed,src}/master/file
+
+./give.sh rm master
+
+[ ! -d "$give_dir/src/master" ]
+spec "give should delete source directory"
+
+[ ! -d "$give_dir/installed/master" ]
+spec "give should delete install directory"
+
+rm -rf "$give_dir"
