@@ -31,6 +31,18 @@ function give_install {
   make install
 }
 
+function give_ensure_installed {
+  if [ ! -d "$give_dir/installed/$1" ]; then
+    echo "Version $1 is not installed. Run \`give install $1\` to install it."
+    exit
+  fi
+}
+
+function give_use {
+  give_ensure_installed $1
+  PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
+}
+
 function give_help {
   echo
   echo "give - git-based node.js version manager"
@@ -48,6 +60,9 @@ fi
 case $1 in
   "help")
     give_help
+  ;;
+  "use")
+    give_use $2
   ;;
   "install")
     give_install $2
