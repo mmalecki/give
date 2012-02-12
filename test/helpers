@@ -1,19 +1,19 @@
 #!/bin/sh
 
-function fail {
+fail () {
   echo "\033[31m  ✘ $1\033[0m"
   exit 1
 }
 
-function success {
+success () {
   echo "\033[32m  ✔ $1\033[0m"
 }
 
-function spec {
+spec () {
   [ $? -eq 0 ] || fail "$1"
   success "$1"
 }
 
-function describe {
+describe () {
   echo "\033[1m$1\033[0m"
 }
