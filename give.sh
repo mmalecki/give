@@ -1,6 +1,8 @@
 #!/bin/sh
 
-give_dir=~/.give
+if [ -z "$give_dir" ]; then
+  give_dir=~/.give
+fi
 
 function give_init {
   if [ ! -d "$give_dir" ]; then
