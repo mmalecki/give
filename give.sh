@@ -4,22 +4,22 @@ if [ -z "$give_dir" ]; then
   give_dir=~/.give
 fi
 
-function give_init {
+give_init () {
   if [ ! -d "$give_dir" ]; then
     mkdir -p "$give_dir"
     git clone https://github.com/joyent/node.git "$give_dir/src/node"
   fi
 }
 
-function give_update {
+give_update () {
   cd "$give_dir/src/node" && git pull
 }
 
-function give_checkout {
+give_checkout () {
   cd "$give_dir/src" && git archive --prefix "$1/" --remote node "$1" | tar -xf -
 }
 
-function give_install {
+give_install () {
   give_init
   give_update
 
@@ -31,28 +31,28 @@ function give_install {
   make install
 }
 
-function give_rm {
+give_rm () {
   give_ensure_installed $1
   rm -rf $give_dir/{installed,src}/$1
 }
 
-function give_ls {
+give_ls () {
   ls "$give_dir/installed"
 }
 
-function give_ensure_installed {
+give_ensure_installed () {
   if [ ! -d "$give_dir/installed/$1" ]; then
     echo "Version $1 is not installed. Run \`give install $1\` to install it."
     exit
   fi
 }
 
-function give_use {
+give_use () {
   give_ensure_installed $1
   PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
 }
 
-function give_help {
+give_help () {
   echo
   echo "give - git-based node.js version manager"
   echo
