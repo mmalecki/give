@@ -57,7 +57,20 @@ function give_help {
   echo "give - git-based node.js version manager"
   echo
   echo "Usage:"
-  echo "  give help        You're staring at it"
+  echo
+  echo "  give install <commit-ish>        Install <commit-ish>"
+  echo "    Examples:"
+  echo "      \`give install v0.6.10\` - installs \`v0.6.10\` tag"
+  echo "      \`give install master\`  - installs \`master\` branch"
+  echo "      \`give install 02c1cb5\` - installs commit \`02c1cb5\`"
+  echo
+  echo "  give use <commit-ish>            Use <commit-ish>"
+  echo "    This command will spawn a subshell with correct version of node.js"
+  echo "    in the \`\$PATH\`."
+  echo
+  echo "  give ls                          List installed node.js versions"
+  echo "  give rm <commit-ish>             Remove <commit-ish>"
+  echo "  give help                        You're staring at it"
   echo
 }
 
