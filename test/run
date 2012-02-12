@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "\033[1mRunning tests:\033[0m"
+
+for f in test/*-test; do
+  echo
+  $f
+done
