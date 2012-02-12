@@ -65,14 +65,16 @@ function give_help {
   echo "      \`give install 02c1cb5\` - installs commit \`02c1cb5\`"
   echo
   echo "  give use <commit-ish>            Use <commit-ish>"
-  echo "    This command will spawn a subshell with correct version of node.js"
-  echo "    in the \`\$PATH\`."
+  echo "    Spawns a subshell with correct version of node.js in the \`\$PATH\`."
   echo
   echo "  give ls                          List installed node.js versions"
+  echo
   echo "  give rm <commit-ish>             Remove <commit-ish>"
+  echo "    Removes both source and installation directory for <commit-ish>."
+  echo
   echo "  give init                        Explicitely initialize repository"
   echo "    Please note that \`give\` does it for you during operations which"
-  echo "    require repository setup"
+  echo "    require repository setup."
   echo
   echo "  give help                        You're staring at it"
   echo
