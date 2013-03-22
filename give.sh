@@ -49,7 +49,7 @@ give_ensure_installed () {
 
 give_use () {
   give_ensure_installed $1
-  PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
+  PROMPT_COMMAND="PATH=$give_dir/installed/$1/bin:$PATH; echo \"Now using Node $1\"; PROMPT_COMMAND=\"\"" "$SHELL" -l
 }
 
 give_help () {
