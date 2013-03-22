@@ -26,7 +26,7 @@ give_install () {
   give_checkout $1
 
   cd "$give_dir/src/$1" && \
-  ./configure --prefix="$give_dir/installed/$1" && \
+  ./configure $CONFIGURE_FLAGS --prefix="$give_dir/installed/$1" && \
   make &&
   make install
 }
