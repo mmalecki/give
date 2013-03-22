@@ -4,10 +4,20 @@ if [ -z "$give_dir" ]; then
   give_dir=~/.give
 fi
 
+give_remote_ls () {
+  NODE_REPO=${NODE_REPO:="https://github.com/joyent/node.git"}
+  local tags=$(git ls-remote --tags $NODE_REPO | awk '{print $2}' | grep -Ev '\^\{\}$' | sed 's/^refs\/tags\///');
+  if [ "$1" != "all" ]; then
+    tags=$(echo "$tags" | grep -E '^v[0-9]+.[0-9]+.[0-9]+$')
+  fi
+  echo "$tags"
+}
+
 give_init () {
+  NODE_REPO=${NODE_REPO:="https://github.com/joyent/node.git"}
   if [ ! -d "$give_dir" ]; then
     mkdir -p "$give_dir"
-    git clone https://github.com/joyent/node.git "$give_dir/src/node"
+    git clone $NODE_REPO "$give_dir/src/node"
   fi
 }
 
@@ -67,6 +77,9 @@ give_help () {
   echo "  give use <commit-ish>            Use <commit-ish>"
   echo "    Spawns a subshell with correct version of node.js in the \`\$PATH\`."
   echo
+  echo "  give remote-ls [all]             List available node.js versions"
+  echo "    Only lists tagged releases by default."
+  echo
   echo "  give ls                          List installed node.js versions"
   echo
   echo "  give rm <commit-ish>             Remove <commit-ish>"
@@ -77,6 +90,10 @@ give_help () {
   echo "    require repository setup."
   echo
   echo "  give help                        You're staring at it"
+  echo
+  echo "Environmental variables:"
+  echo
+  echo "  NODE_REPO                        Full path to git repository"
   echo
 }
 
@@ -91,6 +108,9 @@ case $1 in
   ;;
   "rm")
     give_rm $2
+  ;;
+  "remote-ls")
+    give_remote_ls $2
   ;;
   "ls")
     give_ls
