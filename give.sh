@@ -26,7 +26,7 @@ give_install () {
   give_checkout $1
 
   cd "$give_dir/src/$1" && \
-  ./configure --prefix="$give_dir/installed/$1" && \
+  ./configure $CONFIGURE_FLAGS --prefix="$give_dir/installed/$1" && \
   make &&
   make install
 }
@@ -49,7 +49,7 @@ give_ensure_installed () {
 
 give_use () {
   give_ensure_installed $1
-  PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
+  PROMPT_COMMAND="PATH=$give_dir/installed/$1/bin:$PATH; echo \"Now using Node $1\"; PROMPT_COMMAND=\"\"" "$SHELL" -l
 }
 
 give_help () {
