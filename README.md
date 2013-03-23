@@ -31,6 +31,9 @@ Usage:
   give use <commit-ish>            Use <commit-ish>
     Spawns a subshell with correct version of node.js in the `$PATH`.
 
+  give remote-ls [all]             List available node.js versions
+    Only lists tagged releases by default.
+
   give ls                          List installed node.js versions
 
   give rm <commit-ish>             Remove <commit-ish>
@@ -41,6 +44,13 @@ Usage:
     require repository setup.
 
   give help                        You're staring at it
+
+Environmental variables:
+  These variables are already set to standard defaults, use wisely.
+
+  NODE_REPO                        Full path to git repository
+  NODE_PREFIX                      Path for node's install directory
+
 ```
 
 ### Getting started

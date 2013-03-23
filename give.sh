@@ -94,8 +94,10 @@ give_help () {
   echo "  give help                        You're staring at it"
   echo
   echo "Environmental variables:"
+  echo "  These variables are already set to standard defaults, use wisely."
   echo
   echo "  NODE_REPO                        Full path to git repository"
+  echo "  NODE_PREFIX                      Path for node's install directory"
   echo
 }
 
