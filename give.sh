@@ -35,7 +35,7 @@ give_install () {
 
   give_checkout "$1"
   
-  local NODE_PREFIX = ${NODE_PREFIX:="$give_dir/installed/$1"}
+  local NODE_PREFIX=${NODE_PREFIX:="$give_dir/installed/$1"}
 
   cd "$give_dir/src/$1" && \
   ./configure --prefix="$NODE_PREFIX" && \
