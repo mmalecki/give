@@ -27,8 +27,8 @@ give_install () {
 
   cd "$give_dir/src/$1" && \
   ./configure --prefix="$give_dir/installed/$1" && \
-  make &&
-  make install
+  make $MAKEFLAGS && \
+  make $MAKEFLAGS install
 }
 
 give_rm () {
