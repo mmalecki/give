@@ -49,7 +49,7 @@ give_ensure_installed () {
 
 give_use () {
   give_ensure_installed $1
-  PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
+  NAVE="$1" NAVEVERSION="$1" NAVENAME="$1" PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
 }
 
 give_help () {
