@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 if [ -z "$give_dir" ]; then
   give_dir=~/.give
