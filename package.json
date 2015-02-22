@@ -3,7 +3,10 @@
   "version": "0.1.1",
   "author": "Maciej Małecki <me@mmalecki.com>",
   "description": "git-based node.js version manager",
-  "keywords": ["version manager", "version management"],
+  "keywords": [
+    "version manager",
+    "version management"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mmalecki/give.git"
