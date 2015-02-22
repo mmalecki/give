@@ -2,7 +2,8 @@
 
 `give` ('git-versioned environment', name courtesy of [@AvianFlu](https://github.com/AvianFlu)) is a git-based node.js/io.js version manager.
 
-It allows you to install anything git can checkout:
+It allows you to install anything git can checkout from either node's or io.js's
+repos:
 
   * tags: `give install node v0.6.10`
   * commits: `give install iojs 3f43b1c039727e12c7a27fb31010aa309a4a35d8`
