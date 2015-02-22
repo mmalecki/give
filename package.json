@@ -1,7 +1,7 @@
 {
   "name": "give",
   "version": "0.1.1",
-  "author": "Maciej Małecki <maciej.malecki@notimplemented.org>",
+  "author": "Maciej Małecki <me@mmalecki.com>",
   "description": "git-based node.js version manager",
   "keywords": ["version manager", "version management"],
   "repository": {
