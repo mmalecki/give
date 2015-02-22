@@ -8,32 +8,33 @@ give_init () {
   if [ ! -d "$give_dir" ]; then
     mkdir -p "$give_dir"
     git clone https://github.com/joyent/node.git "$give_dir/src/node"
+    git clone https://github.com/iojs/iojs.git "$give_dir/src/iojs"
   fi
 }
 
 give_update () {
-  cd "$give_dir/src/node" && git pull
+  cd "$give_dir/src/$1" && git pull
 }
 
 give_checkout () {
-  cd "$give_dir/src" && git archive --prefix "$1/" --remote node "$1" | tar -xf -
+  cd "$give_dir/src" && git archive --prefix "$1-$2/" --remote $1 "$2" | tar -xf -
 }
 
 give_install () {
   give_init
-  give_update
+  give_update $1
 
-  give_checkout $1
+  give_checkout $1 $2
 
-  cd "$give_dir/src/$1" && \
-  ./configure --prefix="$give_dir/installed/$1" && \
+  cd "$give_dir/src/$1-$2" && \
+  ./configure --prefix="$give_dir/installed/$1-$2" && \
   make $MAKEFLAGS && \
   make $MAKEFLAGS install
 }
 
 give_rm () {
-  give_ensure_installed $1
-  rm -rf $give_dir/{installed,src}/$1
+  give_ensure_installed $1 $2
+  rm -rf $give_dir/{installed,src}/$1-$2
 }
 
 give_ls () {
@@ -41,42 +42,42 @@ give_ls () {
 }
 
 give_ensure_installed () {
-  if [ ! -d "$give_dir/installed/$1" ]; then
-    echo "Version $1 is not installed. Run \`give install $1\` to install it."
+  if [ ! -d "$give_dir/installed/$1-$2" ]; then
+    echo "$1 $2 is not installed. Run \`give install $1 $2\` to install it."
     exit
   fi
 }
 
 give_use () {
-  give_ensure_installed $1
-  PATH=$give_dir/installed/$1/bin:$PATH "$SHELL"
+  give_ensure_installed $1 $2
+  PATH=$give_dir/installed/$1-$2/bin:$PATH "$SHELL"
 }
 
 give_help () {
   echo
-  echo "give - git-based node.js version manager"
+  echo "give - git-based node.js/io.js version manager"
   echo
   echo "Usage:"
   echo
-  echo "  give install <commit-ish>        Install <commit-ish>"
+  echo "  give install <what> <commit-ish>    Install <commit-ish> of <what>"
   echo "    Examples:"
-  echo "      \`give install v0.6.10\` - installs \`v0.6.10\` tag"
-  echo "      \`give install master\`  - installs \`master\` branch"
-  echo "      \`give install 02c1cb5\` - installs commit \`02c1cb5\`"
+  echo "      \`give install node v0.6.10\` - installs \`v0.6.10\` tag of node"
+  echo "      \`give install iojs master\`  - installs \`master\` branch of iojs"
+  echo "      \`give install iojs 02c1cb5\` - installs commit \`02c1cb5\` of iojs"
   echo
-  echo "  give use <commit-ish>            Use <commit-ish>"
-  echo "    Spawns a subshell with correct version of node.js in the \`\$PATH\`."
+  echo "  give use <what> <commit-ish>        Use <commit-ish> of <what>"
+  echo "    Spawns a subshell with correct version of node.js/io.js in the \`\$PATH\`."
   echo
-  echo "  give ls                          List installed node.js versions"
+  echo "  give ls                             List installed node.js/io.js versions"
   echo
-  echo "  give rm <commit-ish>             Remove <commit-ish>"
-  echo "    Removes both source and installation directory for <commit-ish>."
+  echo "  give rm <what> <commit-ish>         Remove <commit-ish>"
+  echo "    Removes both source and installation directory for <commit-ish> of <what>."
   echo
-  echo "  give init                        Explicitely initialize repository"
+  echo "  give init                           Explicitely initialize repository"
   echo "    Please note that \`give\` does it for you during operations which"
   echo "    require repository setup."
   echo
-  echo "  give help                        You're staring at it"
+  echo "  give help                           You're staring at it"
   echo
 }
 
@@ -90,18 +91,18 @@ case $1 in
     give_help
   ;;
   "rm")
-    give_rm $2
+    give_rm $2 $3
   ;;
   "ls")
     give_ls
   ;;
   "use")
-    give_use $2
+    give_use $2 $3
   ;;
   "init")
     give_init
   ;;
   "install")
-    give_install $2
+    give_install $2 $3
   ;;
 esac
