@@ -1,6 +1,6 @@
 {
   "name": "give",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "author": "Maciej Małecki <me@mmalecki.com>",
   "description": "git-based node.js/io.js version manager",
   "keywords": [
