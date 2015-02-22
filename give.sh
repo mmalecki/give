@@ -8,7 +8,7 @@ give_init () {
   if [ ! -d "$give_dir" ]; then
     mkdir -p "$give_dir"
     git clone https://github.com/joyent/node.git "$give_dir/src/node"
-    git clone https://github.com/iojs/iojs.git "$give_dir/src/iojs"
+    git clone https://github.com/iojs/io.js.git "$give_dir/src/iojs"
   fi
 }
 
