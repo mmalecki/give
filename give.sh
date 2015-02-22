@@ -26,6 +26,10 @@ give_install () {
 
   give_checkout $1 $2
 
+  if [ -z "$MAKEFLAGS" ]; then
+    MAKEFLAGS="-j$(nproc)"
+  fi
+
   cd "$give_dir/src/$1-$2" && \
   ./configure --prefix="$give_dir/installed/$1-$2" && \
   make $MAKEFLAGS && \
