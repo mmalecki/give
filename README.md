@@ -16,6 +16,15 @@ which is very fast on local repositories.
 
     npm install -g give
 
+
+### Getting started
+
+```
+give install iojs v1.3.0 # will install version v1.3.0 of io.js
+give use iojs v1.3.0     # will use version v1.3.0 of io.js (drops you into a subshell)
+^D                       # will quit to original shell
+```
+
 ## Usage
 
 ```
@@ -42,12 +51,4 @@ Usage:
     require repository setup.
 
   give help                           You're staring at it
-```
-
-### Getting started
-
-```
-give install iojs v1.3.0 # will install version v1.3.0 of io.js
-give use iojs v1.3.0     # will use version v1.3.0 of io.js (drops you into a subshell)
-^D                       # will quit to original shell
 ```
