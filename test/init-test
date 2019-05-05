@@ -11,7 +11,4 @@ export give_dir="/tmp/give-$RANDOM"
 [ -d "$give_dir/src/node/.git" ]
 spec "give should clone node.js repository to it's home directory"
 
-[ -d "$give_dir/src/iojs/.git" ]
-spec "give should clone io.js repository to it's home directory"
-
 rm -rf "$give_dir"
