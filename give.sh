@@ -8,16 +8,16 @@ fi
 give_init () {
   if [ ! -d "$give_dir" ]; then
     mkdir -p "$give_dir"
-    git clone https://github.com/nodejs/node.git "$give_dir/src/node"
+    git clone https://github.com/nodejs/node.git "$give_dir/src/"
   fi
 }
 
 give_update () {
-  cd "$give_dir/src/node" && git pull
+  cd "$give_dir/src/" && git pull
 }
 
 give_checkout () {
-  cd "$give_dir/src" && git archive --prefix "$1/" --remote "node" "$1" | tar -xf -
+  cd "$give_dir/src" && git archive --prefix "$1/" --remote "." "$1" | tar -xf -
 }
 
 give_install () {
